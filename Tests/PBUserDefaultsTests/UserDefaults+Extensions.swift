@@ -14,6 +14,6 @@ extension UserDefaults {
     }
 
     func reset(name: String = Bundle.main.bundleIdentifier!) {
-        self.removePersistentDomain(forName: name)
+        removePersistentDomain(forName: name)
     }
 }

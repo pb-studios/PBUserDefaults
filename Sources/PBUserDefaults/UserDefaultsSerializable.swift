@@ -8,7 +8,7 @@
 import Foundation
 
 /// Describes a value that can be saved to and fetched from `UserDefaults`.
-/// 
+///
 /// Default conformances are provided for:
 ///    - `Bool`
 ///    - `Int`
@@ -24,7 +24,6 @@ import Foundation
 ///    - `Dictionary`
 ///    - `RawRepresentable` types
 public protocol UserDefaultsSerializable {
-
     /// The type of the value that is stored in `UserDefaults`.
     associatedtype StoredValue
 
@@ -32,7 +31,7 @@ public protocol UserDefaultsSerializable {
     var storedValue: StoredValue { get }
 
     /// Initializes the object using the provided value.
-    /// 
+    ///
     /// - Parameter storedValue: The previously store value fetched from `UserDefaults`.
     init(storedValue: StoredValue)
 }
@@ -121,7 +120,7 @@ extension Data: UserDefaultsSerializable {
 /// :nodoc:
 extension Array: UserDefaultsSerializable where Element: UserDefaultsSerializable {
     public var storedValue: [Element.StoredValue] {
-        self.map { $0.storedValue }
+        map { $0.storedValue }
     }
 
     public init(storedValue: [Element.StoredValue]) {
@@ -132,7 +131,7 @@ extension Array: UserDefaultsSerializable where Element: UserDefaultsSerializabl
 /// :nodoc:
 extension Set: UserDefaultsSerializable where Element: UserDefaultsSerializable {
     public var storedValue: [Element.StoredValue] {
-        self.map { $0.storedValue }
+        map { $0.storedValue }
     }
 
     public init(storedValue: [Element.StoredValue]) {
@@ -143,7 +142,7 @@ extension Set: UserDefaultsSerializable where Element: UserDefaultsSerializable 
 /// :nodoc:
 extension Dictionary: UserDefaultsSerializable where Key == String, Value: UserDefaultsSerializable {
     public var storedValue: [String: Value.StoredValue] {
-        self.mapValues { $0.storedValue }
+        mapValues { $0.storedValue }
     }
 
     public init(storedValue: [String: Value.StoredValue]) {
@@ -152,10 +151,10 @@ extension Dictionary: UserDefaultsSerializable where Key == String, Value: UserD
 }
 
 /// :nodoc:
-extension UserDefaultsSerializable where Self: RawRepresentable, Self.RawValue: UserDefaultsSerializable {
-    public var storedValue: RawValue.StoredValue { self.rawValue.storedValue }
+public extension UserDefaultsSerializable where Self: RawRepresentable, Self.RawValue: UserDefaultsSerializable {
+    var storedValue: RawValue.StoredValue { rawValue.storedValue }
 
-    public init(storedValue: RawValue.StoredValue) {
+    init(storedValue: RawValue.StoredValue) {
         self = Self(rawValue: Self.RawValue(storedValue: storedValue))!
     }
 }

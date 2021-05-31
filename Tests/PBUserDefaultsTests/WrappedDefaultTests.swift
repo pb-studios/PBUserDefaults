@@ -9,7 +9,6 @@
 import XCTest
 
 final class WrappedDefaultTests: XCTestCase {
-
     let domain = UUID().uuidString
     lazy var testDefaults = UserDefaults.testSuite(name: self.domain)
 

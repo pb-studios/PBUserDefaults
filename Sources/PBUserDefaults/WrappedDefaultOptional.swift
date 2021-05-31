@@ -19,13 +19,13 @@ public struct WrappedDefaultOptional<T: UserDefaultsSerializable> {
     /// The value retreived from `UserDefaults`, if any exists.
     public var wrappedValue: T? {
         get {
-            self._userDefaults.fetchOptional(self.key)
+            _userDefaults.fetchOptional(key)
         }
         set {
             if let newValue = newValue {
-                self._userDefaults.save(newValue, for: self.key)
+                _userDefaults.save(newValue, for: key)
             } else {
-                self._userDefaults.delete(for: self.key)
+                _userDefaults.delete(for: key)
             }
         }
     }
@@ -36,7 +36,7 @@ public struct WrappedDefaultOptional<T: UserDefaultsSerializable> {
     ///   - userDefaults: The `UserDefaults` backing store. The default value is `.standard`.
     public init(keyName: String,
                 userDefaults: UserDefaults = .standard) {
-        self.key = keyName
-        self._userDefaults = userDefaults
+        key = keyName
+        _userDefaults = userDefaults
     }
 }

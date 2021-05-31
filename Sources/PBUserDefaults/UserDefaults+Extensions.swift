@@ -10,24 +10,23 @@ import Foundation
 // swiftlint:disable force_cast
 
 extension UserDefaults {
-
     func save<T: UserDefaultsSerializable>(_ value: T, for key: String) {
         if T.self == URL.self {
             // Hack for URL, which is special
             // See: http://dscoder.com/defaults.html
             // Error: Attempt to insert non-property list object, NSInvalidArgumentException
-            self.set(value as? URL, forKey: key)
+            set(value as? URL, forKey: key)
             return
         }
-        self.set(value.storedValue, forKey: key)
+        set(value.storedValue, forKey: key)
     }
 
     func delete(for key: String) {
-        self.removeObject(forKey: key)
+        removeObject(forKey: key)
     }
 
     func fetch<T: UserDefaultsSerializable>(_ key: String) -> T {
-        self.fetchOptional(key)!
+        fetchOptional(key)!
     }
 
     func fetchOptional<T: UserDefaultsSerializable>(_ key: String) -> T? {
@@ -37,9 +36,9 @@ extension UserDefaults {
             // Hack for URL, which is special
             // See: http://dscoder.com/defaults.html
             // Errpr: Could not cast value of type '_NSInlineData' to 'NSURL'
-            fetched = self.url(forKey: key)
+            fetched = url(forKey: key)
         } else {
-            fetched = self.object(forKey: key)
+            fetched = object(forKey: key)
         }
 
         if fetched == nil {
@@ -50,7 +49,7 @@ extension UserDefaults {
     }
 
     func registerDefault<T: UserDefaultsSerializable>(value: T, key: String) {
-        self.register(defaults: [key: value.storedValue])
+        register(defaults: [key: value.storedValue])
     }
 }
 

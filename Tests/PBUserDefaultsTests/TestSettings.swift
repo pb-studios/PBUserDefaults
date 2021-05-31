@@ -5,8 +5,8 @@
 //  Created by HASAN CAN on 9/5/21.
 //
 
-@testable import PBUserDefaults
 import Foundation
+@testable import PBUserDefaults
 
 enum TestFruit: String, UserDefaultsSerializable {
     case apple
@@ -32,7 +32,6 @@ struct TestCustomRepresented: RawRepresentable, UserDefaultsSerializable {
 }
 
 final class TestSettings: NSObject {
-
     static var store = UserDefaults.testSuite()
 
     @WrappedDefault(keyName: "flag", defaultValue: true, userDefaults: store)

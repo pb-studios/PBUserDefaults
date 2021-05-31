@@ -10,7 +10,6 @@ import Combine
 import XCTest
 
 final class IntegrationTests: XCTestCase {
-
     let settings = TestSettings()
     var cancellable = Set<AnyCancellable>()
 
