@@ -127,7 +127,7 @@ Adding support for custom types is possible by conforming to `UserDefaultsSerial
 
 ```swift
 dependencies: [
-    .package(url: "git@github.com:pb-studios/PBUserDefaults.git", from: "1.0.0")
+    .package(url: "git@github.com:pb-studios/PBUserDefaults.git", from: "v1.0.0")
 ]
 ```
 
